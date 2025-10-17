@@ -1,5 +1,7 @@
 # 📚 BKM Kitap - Akıllı Çok Satanlar Scraper'ı
 
+![Projenin Çalışma Anı Ekran Görüntüsü](assets/Database.png)
+
 Bu proje, **BKM Kitap** web sitesinin "Çok Satanlar" bölümündeki kitapları tarayan, elde ettiği verileri temizleyip yapılandıran ve bunları **akıllı bir şekilde bir SQLite veritabanına kaydeden** bir Python uygulamasıdır.
 
 ---
@@ -82,6 +84,11 @@ python main.py
 Script yeniden çalıştırıldığında, sadece **yeni kitaplar** eklenecek ve terminalde ilgili bilgilendirme mesajı görünecektir.
 
 ---
+
+![Projenin Çalışma Anı Ekran Görüntüsü](assets/Terminal1.png)
+![Projenin Çalışma Anı Ekran Görüntüsü](assets/Terminal2.png)
+![Projenin Çalışma Anı Ekran Görüntüsü](assets/Terminal3.png)
+![Projenin Çalışma Anı Ekran Görüntüsü](assets/Terminal4.png)
 
 ## 🧑‍💻 Geliştirici Notları
 
