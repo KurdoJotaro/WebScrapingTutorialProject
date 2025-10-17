@@ -1,0 +1,7 @@
+# Sanal ortamı ve IDE ayarlarını görmezden gel
+.venv/
+.idea/
+
+# Oluşturulacak veri dosyalarını görmezden gel
+*.csv
+*.db
