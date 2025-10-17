@@ -12,7 +12,8 @@ def init_db():
                 [Yayınevi] TEXT,
                 [İndirimsiz Fiyat] REAL,
                 [İndirim Oranı] INTEGER,
-                [İndirimli Fiyat] REAL
+                [İndirimli Fiyat] REAL,
+                UNIQUE([Kitap Adı], [Kitap Yazarı])
             )
         """)
         conn.commit()
@@ -26,7 +27,7 @@ def save_books(kitap_listesi):
     cursor = conn.cursor()
 
     insert_query = """
-        INSERT INTO kitaplar (
+        INSERT OR IGNORE INTO kitaplar (
             [Kitap Adı], 
             [Kitap Yazarı], 
             [Yayınevi], 
@@ -38,14 +39,13 @@ def save_books(kitap_listesi):
     for kitap in kitap_listesi:
 
         veri_demeti = (
-            kitap['kitap_adi'],
-            kitap['yazar'],
-            kitap['yayinevi'],
-            kitap['fiyat'],
-            kitap['indirimsiz_fiyat'],
-            kitap['indirim_orani']
+            kitap['Kitap Adı'],
+            kitap['Kitap Yazarı'],
+            kitap['Yayınevi'],
+            kitap['İndirimsiz Fiyat'],
+            kitap['İndirim Oranı'],
+            kitap['İndirimli Fiyat']
         )
-        print("Hazırlandı.")
         cursor.execute(insert_query, veri_demeti)
 
     print(f"Döngü tamamlandı. {len(kitap_listesi)} adet kitap veritabanına eklenmek üzere hazırlandı.")
@@ -53,11 +53,3 @@ def save_books(kitap_listesi):
     print("Tüm kitaplar eklendi.")
     conn.close()
     print("Veriler başarıyla kaydedildi ve veritabanı bağlantısı kapatıldı.")
-
-
-# --- TEST BLOĞU ---
-if __name__ == "__main__":
-    print("1. AŞAMA: Veritabanı kurulum modülü test ediliyor...")
-    init_db()
-    print("2. AŞAMA: Veritabanının kitaplar.db'e aktarımı test ediliyor...")
-    save_books(kitap_listesi=[])
