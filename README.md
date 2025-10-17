@@ -51,8 +51,8 @@ Bu proje, **BKM Kitap** web sitesinin "Çok Satanlar" bölümündeki kitapları 
 
 ```bash
 # HTTPS URL’ini kendi GitHub projenizinkiyle değiştirin
-git clone https://github.com/KULLANICI-ADINIZ/PROJE-ADINIZ.git
-cd PROJE-ADINIZ
+git clone https://github.com/KurdoJotaro/WebScrapingTutorialProject
+cd WebScrapingTutorialProject
 ```
 
 ### 2. Sanal Ortam Oluşturun ve Aktif Edin
