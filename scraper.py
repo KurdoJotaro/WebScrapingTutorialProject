@@ -37,10 +37,10 @@ def scrape_bkm_kitap(url):
             kitap_bilgileri = {
                 'Kitap Adı': kitapAdi,
                 'Kitap Yazarı': yazar,
-               'Yayınevi': yayinevi,
-               'İndirimsiz Fiyat': indirimsizFiyat_Temizlik,
-               'İndirim Oranı': indirimOrani_Temizlik,
-               'İndirimli Fiyat': indirimliFiyat_Temizlik
+                'Yayınevi': yayinevi,
+                'İndirimsiz Fiyat': indirimsizFiyat_Temizlik,
+                'İndirim Oranı': indirimOrani_Temizlik,
+                'İndirimli Fiyat': indirimliFiyat_Temizlik
             }
 
             booksDataList.append(kitap_bilgileri)
@@ -52,41 +52,27 @@ def scrape_bkm_kitap(url):
 
 
 """--- TEST BLOĞU ---"""
-# --- scraper.py dosyasının en altına eklenecek YENİ TEST BLOĞU ---
-
-# time modülünü ekliyoruz. Sayfalar arasında küçük bir bekleme yapmak için.
-import time
+import time #1 sn bekleme için
 
 if __name__ == "__main__":
 
-    # 1. Adım: Tüm sayfalardan gelen kitapları toplayacağımız ana listeyi oluşturalım.
-    tum_kitaplar = []
+    tum_kitaplar = [] #liste oluşturma
 
-    # 2. Adım: 1'den 12'ye kadar olan tüm sayfa numaraları için bir döngü başlatalım.
-    # range(1, 13) 1'den başlar, 13'e kadar gider (13 dahil değil).
     for sayfa_numarasi in range(1, 13):
 
-        # 3. Adım: O anki sayfa numarasına göre doğru URL'i oluşturalım.
         url = f"https://www.bkmkitap.com/kitap/cok-satan-kitaplar?ps={sayfa_numarasi}"
         print(f"\n---> Sayfa {sayfa_numarasi} taranıyor: {url}")
 
-        # 4. Adım: Scraper fonksiyonumuzu bu URL ile çağıralım.
         kitaplar_bu_sayfadan = scrape_bkm_kitap(url)
 
-        # 5. Adım: Eğer o sayfadan kitap geldiyse, ana listemize ekleyelim.
         if kitaplar_bu_sayfadan:
-            # .extend(), bir listeyi diğerinin sonuna ekler.
             tum_kitaplar.extend(kitaplar_bu_sayfadan)
             print(
                 f"Bu sayfadan {len(kitaplar_bu_sayfadan)} kitap bulundu. Ana listede toplam {len(tum_kitaplar)} kitap var.")
         else:
             print("Bu sayfadan veri çekilemedi. Döngü devam ediyor...")
-
-        # 6. Adım: Sunucuyu yormamak için her istek arasında 1 saniye bekleyelim.
-        # Bu, "kibar bir scraper" olmanın en önemli kuralıdır.
         time.sleep(1)
 
-    # 7. Adım: Döngü bittikten sonra genel sonucu yazdıralım.
     if tum_kitaplar:
         print(f"\n\n---> TARAMA TAMAMLANDI! TOPLAM {len(tum_kitaplar)} KİTAP BİLGİSİ ÇEKİLDİ! <---")
         from pprint import pprint
