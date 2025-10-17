@@ -1,6 +1,6 @@
 # BKM Kitap - Çok Satanlar Scraper Projesi
 
-KESİNLİKLEYAPAYZEKATARAFINDANYAZILMIŞTIR-KESİNLİKLEYAPAYZEKATARAFINDANYAZILMIŞTIR-KESİNLİKLEYAPAYZEKATARAFINDANYAZILMIŞTIR
+KESİNLİKLEYAPAYZEKATARAFINDANYAZILMIŞTIR
 
 Bu proje, Python kullanılarak BKM Kitap web sitesinin "Çok Satanlar" bölümünden kitap verilerini çekmek için geliştirilmiştir. Proje, sitenin sayfalandırma (pagination) yapısını takip ederek birden fazla sayfayı tarayabilir ve topladığı verileri temizleyerek yapılandırılmış bir formatta sunar.
 
@@ -44,4 +44,4 @@ Bu proje aşağıdaki yetenekleri sergilemektedir:
 
   Bu komut, verileri çekecek ve proje klasöründe bkm\_kitaplar.csv adında bir dosya oluşturacaktır.
 
-KESİNLİKLEYAPAYZEKATARAFINDANYAZILMIŞTIR-KESİNLİKLEYAPAYZEKATARAFINDANYAZILMIŞTIR-KESİNLİKLEYAPAYZEKATARAFINDANYAZILMIŞTIR
+KESİNLİKLEYAPAYZEKATARAFINDANYAZILMIŞTIR
