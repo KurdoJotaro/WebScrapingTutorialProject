@@ -1,4 +1,6 @@
+# database.py (NİHAİ VE DOĞRU HALİ)
 import sqlite3
+
 
 def init_db():
     try:
@@ -18,38 +20,48 @@ def init_db():
         """)
         conn.commit()
         conn.close()
-        print("Veritabanı 'kitaplar.db' başarıyla oluşturuldu/düzenlendi.")
+        print("Veritabanı 'kitaplar.db' başarıyla oluşturuldu/kontrol edildi.")
     except sqlite3.Error as e:
         print(f"Veritabanı hatası oluştu: {e}")
 
+
 def save_books(kitap_listesi):
-    conn = sqlite3.connect('kitaplar.db')
-    cursor = conn.cursor()
+    try:
+        conn = sqlite3.connect('kitaplar.db')
+        cursor = conn.cursor()
 
-    insert_query = """
-        INSERT OR IGNORE INTO kitaplar (
-            [Kitap Adı], 
-            [Kitap Yazarı], 
-            [Yayınevi], 
-            [İndirimsiz Fiyat], 
-            [İndirim Oranı], 
-            [İndirimli Fiyat]
-        ) VALUES (?, ?, ?, ?, ?, ?)
-    """
-    for kitap in kitap_listesi:
+        insert_query = """
+            INSERT OR IGNORE INTO kitaplar (
+                [Kitap Adı], 
+                [Kitap Yazarı], 
+                [Yayınevi], 
+                [İndirimsiz Fiyat], 
+                [İndirim Oranı], 
+                [İndirimli Fiyat]
+            ) VALUES (?, ?, ?, ?, ?, ?)
+        """
 
-        veri_demeti = (
-            kitap['Kitap Adı'],
-            kitap['Kitap Yazarı'],
-            kitap['Yayınevi'],
-            kitap['İndirimsiz Fiyat'],
-            kitap['İndirim Oranı'],
-            kitap['İndirimli Fiyat']
-        )
-        cursor.execute(insert_query, veri_demeti)
+        data_to_insert = [
+            (
+                kitap['Kitap Adı'],
+                kitap['Kitap Yazarı'],
+                kitap['Yayınevi'],
+                kitap['İndirimsiz Fiyat'],
+                kitap['İndirim Oranı'],
+                kitap['İndirimli Fiyat']
+            )
+            for kitap in kitap_listesi
+        ]
 
-    print(f"Döngü tamamlandı. {len(kitap_listesi)} adet kitap veritabanına eklenmek üzere hazırlandı.")
-    conn.commit()
-    print("Tüm kitaplar eklendi.")
-    conn.close()
-    print("Veriler başarıyla kaydedildi ve veritabanı bağlantısı kapatıldı.")
+        cursor.executemany(insert_query, data_to_insert)
+
+        eklenen_kitap_sayisi = cursor.rowcount
+        conn.commit()
+        conn.close()
+
+        print(f"İşlem tamamlandı. Veritabanına {eklenen_kitap_sayisi} yeni kitap eklendi.")
+
+    except sqlite3.Error as e:
+        print(f"Veritabanına kaydetme sırasında hata oluştu: {e}")
+    except KeyError as e:
+        print(f"Veri hatası: Beklenen {e} anahtarı sözlükte bulunamadı. Lütfen scraper.py dosyasını kontrol edin.")

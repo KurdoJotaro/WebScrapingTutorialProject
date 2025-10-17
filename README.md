@@ -1,47 +1,98 @@
-# BKM Kitap - Çok Satanlar Scraper Projesi
+# 📚 BKM Kitap - Akıllı Çok Satanlar Scraper'ı
 
-KESİNLİKLEYAPAYZEKATARAFINDANYAZILMIŞTIR
+Bu proje, **BKM Kitap** web sitesinin "Çok Satanlar" bölümündeki kitapları tarayan, elde ettiği verileri temizleyip yapılandıran ve bunları **akıllı bir şekilde bir SQLite veritabanına kaydeden** bir Python uygulamasıdır.
 
-Bu proje, Python kullanılarak BKM Kitap web sitesinin "Çok Satanlar" bölümünden kitap verilerini çekmek için geliştirilmiştir. Proje, sitenin sayfalandırma (pagination) yapısını takip ederek birden fazla sayfayı tarayabilir ve topladığı verileri temizleyerek yapılandırılmış bir formatta sunar.
+---
 
-## Temel Yetenekler
+## 🚀 Anahtar Özellikler
 
-Bu proje aşağıdaki yetenekleri sergilemektedir:
+* 🧭 **Sayfalandırma (Pagination) Desteği:**
+  Sitedeki tüm “çok satanlar” sayfalarını (`?ps=1`, `?ps=2`, …) otomatik olarak gezer ve tüm kitapları toplar.
 
-- requests ve BeautifulSoup ile web scraping.
+* 🧠 **Akıllı Veri Kaydı (Veri Tekrarını Önleme):**
+  Veritabanı, kitap adı ve yazar bilgilerini benzersiz (`UNIQUE`) kabul eder.
+  Script yeniden çalıştırıldığında mevcut kitapları **yeniden eklemez**, yalnızca yeni kitapları kaydeder.
 
-- Birden fazla sayfayı tarayabilen bir scraper mantığı.
+* 🥹 **Temiz ve Yapılandırılmış Veri:**
+  Her kitaba ait şu bilgiler toplanır ve kaydedilmeden önce normalize edilir:
 
-- Çekilen ham veriyi (fiyat, indirim oranı vb.) temizleme ve işleme.
+  * Kitap Adı
+  * Yazar
+  * Yayınevi
+  * Fiyat (`REAL`)
+  * İndirimsiz Fiyat (`REAL`)
+  * İndirim Oranı (`INTEGER`)
 
-- Hata yönetimi (try...except).
+* 🧩 **Modüler Tasarım:**
+  Kod; `scraper.py`, `database.py`, `main.py` olarak modüllere ayrılmıştır.
+  Bu sayede **okunabilirlik**, **yeniden kullanılabilirlik** ve **bakım kolaylığı** sağlanır.
 
-- Modüler ve test edilebilir bir yapı (scraper.py).
+* 🛡️ **Sağlam Hata Yönetimi:**
+  `try...except` blokları ile ağ hataları veya parse hataları durumunda program güvenli bir şekilde sonlanır.
 
-- Proje bağımlılıklarını requirements.txt ile yönetme.
+---
 
-## Kurulum ve Çalıştırma
+## 🧪 Kullanılan Teknolojiler
 
-1. Bu depoyu bilgisayarınıza klonlayın (git clone).
+| Teknoloji          | Açıklama                      |
+| ------------------ | ----------------------------- |
+| **Python 3**       | Ana programlama dili          |
+| **Requests**       | HTTP istekleri için           |
+| **BeautifulSoup4** | HTML ayrıştırma ve veri çekme |
+| **SQLite3**        | Yerel veritabanı yönetimi     |
 
-2. Proje klasöründe bir sanal ortam (venv) oluşturup aktif hale getirin.
+---
 
-3. Aşağıdaki komut ile gerekli kütüphaneleri kurun:
+## ⚙️ Kurulum ve Kullanım
 
-  ```bash
+### 1. Projeyi Klonlayın
 
-  pip install -r requirements.txt
+```bash
+# HTTPS URL’ini kendi GitHub projenizinkiyle değiştirin
+git clone https://github.com/KULLANICI-ADINIZ/PROJE-ADINIZ.git
+cd PROJE-ADINIZ
+```
 
-  ```
+### 2. Sanal Ortam Oluşturun ve Aktif Edin
 
-4. scraper.py modülünü doğrudan çalıştırarak veri çekme ve CSV'ye kaydetme işlemini test edebilirsiniz:
+```bash
+# Sanal ortam oluştur
+python -m venv .venv
 
-  ```bash
+# Windows
+.venv\Scripts\activate
 
-  python scraper.py
+# macOS / Linux
+source .venv/bin/activate
+```
 
-  ```
+### 3. Gerekli Kütüphaneleri Yükleyin
 
-  Bu komut, verileri çekecek ve proje klasöründe bkm\_kitaplar.csv adında bir dosya oluşturacaktır.
+```bash
+pip install -r requirements.txt
+```
 
-KESİNLİKLEYAPAYZEKATARAFINDANYAZILMIŞTIR
+### 4. Uygulamayı Çalıştırın
+
+```bash
+python main.py
+```
+
+✅ Çalışma tamamlandığında, proje klasörünüzde `kitaplar.db` adında bir veritabanı dosyası oluşacaktır.
+Script yeniden çalıştırıldığında, sadece **yeni kitaplar** eklenecek ve terminalde ilgili bilgilendirme mesajı görünecektir.
+
+---
+
+## 🧑‍💻 Geliştirici Notları
+
+* `database.py` dosyası, SQLite bağlantısı ve tablo yönetiminden sorumludur.
+* `scraper.py` dosyası, HTTP isteklerini ve HTML parse işlemini yürütür.
+* `main.py` dosyası, tüm süreci koordine eder.
+
+---
+
+## 📜 Lisans
+
+Bu proje açık kaynaklıdır. Dilerseniz kendi projenizde serbestçe uyarlayabilirsiniz.
+
+---
