@@ -1,54 +1,45 @@
-\# BKM Kitap - Çok Satanlar Scraper Projesi
+# BKM Kitap - Çok Satanlar Scraper Projesi
 
-
+KESİNLİKLEYAPAYZEKATARAFINDANYAZILMIŞTIR
 
 Bu proje, Python kullanılarak BKM Kitap web sitesinin "Çok Satanlar" bölümünden kitap verilerini çekmek için geliştirilmiştir. Proje, sitenin sayfalandırma (pagination) yapısını takip ederek birden fazla sayfayı tarayabilir ve topladığı verileri temizleyerek yapılandırılmış bir formatta sunar.
 
-
-
-\## Temel Yetenekler
-
-
+## Temel Yetenekler
 
 Bu proje aşağıdaki yetenekleri sergilemektedir:
 
-\- `requests` ve `BeautifulSoup` ile web scraping.
+- requests ve BeautifulSoup ile web scraping.
 
-\- Birden fazla sayfayı tarayabilen bir scraper mantığı.
+- Birden fazla sayfayı tarayabilen bir scraper mantığı.
 
-\- Çekilen ham veriyi (fiyat, indirim oranı vb.) temizleme ve işleme.
+- Çekilen ham veriyi (fiyat, indirim oranı vb.) temizleme ve işleme.
 
-\- Hata yönetimi (`try...except`).
+- Hata yönetimi (try...except).
 
-\- Modüler ve test edilebilir bir yapı (`scraper.py`).
+- Modüler ve test edilebilir bir yapı (scraper.py).
 
-\- Proje bağımlılıklarını `requirements.txt` ile yönetme.
+- Proje bağımlılıklarını requirements.txt ile yönetme.
 
+## Kurulum ve Çalıştırma
 
+1. Bu depoyu bilgisayarınıza klonlayın (git clone).
 
-\## Kurulum ve Çalıştırma
+2. Proje klasöründe bir sanal ortam (venv) oluşturup aktif hale getirin.
 
+3. Aşağıdaki komut ile gerekli kütüphaneleri kurun:
 
+  ```bash
 
-1\.  Bu depoyu bilgisayarınıza klonlayın (`git clone`).
+  pip install -r requirements.txt
 
-2\.  Proje klasöründe bir sanal ortam (`venv`) oluşturup aktif hale getirin.
+  ```
 
-3\.  Aşağıdaki komut ile gerekli kütüphaneleri kurun:
+4. scraper.py modülünü doğrudan çalıştırarak veri çekme ve CSV'ye kaydetme işlemini test edebilirsiniz:
 
-&nbsp;   ```bash
+  ```bash
 
-&nbsp;   pip install -r requirements.txt
+  python scraper.py
 
-&nbsp;   ```
+  ```
 
-4\.  `scraper.py` modülünü doğrudan çalıştırarak veri çekme ve CSV'ye kaydetme işlemini test edebilirsiniz:
-
-&nbsp;   ```bash
-
-&nbsp;   python scraper.py
-
-&nbsp;   ```
-
-&nbsp;   Bu komut, verileri çekecek ve proje klasöründe `bkm\_kitaplar.csv` adında bir dosya oluşturacaktır.
-
+  Bu komut, verileri çekecek ve proje klasöründe bkm\_kitaplar.csv adında bir dosya oluşturacaktır.
