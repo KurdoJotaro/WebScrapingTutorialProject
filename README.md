@@ -25,6 +25,13 @@ Bu proje, **BKM Kitap** web sitesinin "Çok Satanlar" bölümündeki kitapları 
   * İndirimsiz Fiyat (`REAL`)
   * İndirim Oranı (`INTEGER`)
 
+* 🔍 ** İnteraktif Arama ve Listeleme Fonksiyonu:**
+  Veritabanına kaydedilen kitapların ismi, yazarın ismi ya da yayınevi aratılarak bulunan sonuçların listelenmesini sağlar.
+  *Kısmi Eşleşme:* Arama terimini içeren tüm kayıtları bulur (örneğin, "Kanun" araması "Rezonans Kanunu"nu bulur).
+  *Büyük/Küçük Harf Duyarsız:* Arama, büyük/küçük harf farkı gözetmeksizin yapılır (`LOWER()` fonksiyonu kullanılarak).
+
+
+
 * 🧩 **Modüler Tasarım:**
   Kod; `scraper.py`, `database.py`, `main.py` olarak modüllere ayrılmıştır.
   Bu sayede **okunabilirlik**, **yeniden kullanılabilirlik** ve **bakım kolaylığı** sağlanır.
